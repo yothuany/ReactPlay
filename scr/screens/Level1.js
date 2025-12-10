@@ -1,54 +1,140 @@
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useState } from "react";
-import { View, Text, Button } from "react-native";
-import CodeBlock from "../components/codeBlock";
-import { setLevel } from "../progress";
 
 export default function Level1({ navigation }) {
   const [count, setCount] = useState(0);
 
-  const code = `
-function MyComponent() {
+  return (
+    <View style={styles.container}>
+      {/* Título */}
+      <Text style={styles.title}>1 — Componentes</Text>
+
+      {/* Descrição */}
+      <Text style={styles.description}>
+        Um componente é uma função JavaScript que retorna uma interface (UI).
+        Ele recebe valores (props) e exibe algo na tela.
+      </Text>
+
+      {/* Card interativo */}
+      <View style={styles.card}>
+        <Text style={styles.counterText}>Cliques: {count}</Text>
+
+        <TouchableOpacity
+          style={styles.circleButton}
+          onPress={() => setCount(count + 1)}
+        >
+          <Text style={styles.plus}>+</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Código */}
+      <Text style={styles.codeTitle}>Código usado acima:</Text>
+
+      <View style={styles.codeBox}>
+        <Text style={styles.code}>
+{`function MyComponent() {
   const [count, setCount] = useState(0);
 
   return (
-    <View>
-      <Text>Clicks: {count}</Text>
-      <Button title="+" onPress={() => setCount(count + 1)} />
-    </View>
+    <div className="flex-col items-center">
+      <p>Cliques: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        +
+      </button>
+    </div>
   );
-}
-`;
-
-  return (
-    <View style={{ flex:1, padding:20 }}>
-      <Text style={{ fontSize:22, marginBottom:10 }}>1 — Componentes</Text>
-
-      <Text>
-        Um componente é uma função que retorna a interface (UI).
-        Ele recebe valores e exibe algo na tela.
-      </Text>
-
-      <View style={{ alignItems:"center", marginVertical:20 }}>
-        <Text>Clicks: {count}</Text>
-        <Button title="+" onPress={() => setCount(count + 1)} />
+}`}
+        </Text>
       </View>
 
-      <Text style={{ fontWeight:"bold", marginTop:10 }}>
-        Código usado acima:
-      </Text>
-      <CodeBlock code={code} />
-
-      <Text style={{ marginTop:10 }}>
-        Nesta função, usamos useState() para gerar um estado interno.
+      {/* Explicação */}
+      <Text style={styles.footerText}>
+        Nesta função, usamos o Hook useState para gerar um estado interno que faz
+        o componente renderizar novamente a cada clique.
       </Text>
 
-      <Button
-        title="Concluir nível"
-        onPress={() => {
-          setLevel(2);
-          navigation.navigate("Level2");
-        }}
-      />
+      {/* Botão */}
+      <TouchableOpacity
+        style={styles.nextButton}
+        onPress={() => navigation.navigate("Level2")}
+      >
+        <Text style={styles.nextButtonText}>
+          Concluir Nível 1 e Ir para o 2
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    backgroundColor: "#f9fafb",
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "700",
+    marginBottom: 12,
+  },
+  description: {
+    fontSize: 14,
+    color: "#374151",
+    marginBottom: 20,
+  },
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 20,
+    alignItems: "center",
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+  },
+  counterText: {
+    fontSize: 16,
+    marginBottom: 12,
+  },
+  circleButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#22c55e",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  plus: {
+    color: "#fff",
+    fontSize: 24,
+    fontWeight: "700",
+  },
+  codeTitle: {
+    fontWeight: "600",
+    marginBottom: 8,
+  },
+  codeBox: {
+    backgroundColor: "#111827",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+  },
+  code: {
+    color: "#e5e7eb",
+    fontSize: 12,
+    fontFamily: "monospace",
+  },
+  footerText: {
+    fontSize: 13,
+    color: "#374151",
+    marginBottom: 20,
+  },
+  nextButton: {
+    backgroundColor: "#2563eb",
+    padding: 14,
+    borderRadius: 8,
+  },
+  nextButtonText: {
+    color: "#fff",
+    textAlign: "center",
+    fontWeight: "600",
+  },
+});
