@@ -6,16 +6,19 @@ export default function Level1({ navigation }) {
 
   return (
     <View style={styles.container}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={styles.backButton}>⬅ Voltar</Text>
+      </TouchableOpacity>
       {/* Título */}
       <Text style={styles.title}>1 — Componentes</Text>
 
       {/* Descrição */}
       <Text style={styles.description}>
-        Um componente é uma função JavaScript que retorna uma interface (UI).
-        Ele recebe valores (props) e exibe algo na tela.
+        Um componente é uma função JavaScript que retorna uma interface.
+        Ele pode guardar valores e responder a interações do usuário.
       </Text>
 
-      {/* Card interativo */}
+      {/* Exemplo interativo */}
       <View style={styles.card}>
         <Text style={styles.counterText}>Cliques: {count}</Text>
 
@@ -27,21 +30,25 @@ export default function Level1({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      {/* Código */}
-      <Text style={styles.codeTitle}>Código usado acima:</Text>
+      {/* Código REAL usado */}
+      <Text style={styles.codeTitle}>Código usado neste exemplo:</Text>
 
       <View style={styles.codeBox}>
         <Text style={styles.code}>
-{`function MyComponent() {
+{`import { Text, TouchableOpacity } from "react-native";
+import { useState } from "react";
+
+function MyComponent() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="flex-col items-center">
-      <p>Cliques: {count}</p>
-      <button onClick={() => setCount(count + 1)}>
-        +
-      </button>
-    </div>
+    <>
+      <Text>Cliques: {count}</Text>
+
+      <TouchableOpacity onPress={() => setCount(count + 1)}>
+        <Text>+</Text>
+      </TouchableOpacity>
+    </>
   );
 }`}
         </Text>
@@ -49,11 +56,11 @@ export default function Level1({ navigation }) {
 
       {/* Explicação */}
       <Text style={styles.footerText}>
-        Nesta função, usamos o Hook useState para gerar um estado interno que faz
-        o componente renderizar novamente a cada clique.
+        Este componente guarda um valor usando useState.
+        Ao clicar no botão, o estado muda e a interface é renderizada novamente.
       </Text>
 
-      {/* Botão */}
+      {/* Próximo nível */}
       <TouchableOpacity
         style={styles.nextButton}
         onPress={() => navigation.navigate("Level2")}
@@ -65,6 +72,7 @@ export default function Level1({ navigation }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -131,6 +139,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#2563eb",
     padding: 14,
     borderRadius: 8,
+  },
+   backButton: {
+    color: "#2563eb",
+    marginBottom: 12,
+    fontSize: 14,
   },
   nextButtonText: {
     color: "#fff",

@@ -1,66 +1,103 @@
-import React from 'react';
-import Level1 from './Level1';
-// Corrigido para uma importação genérica que resolve o problema no ambiente de compilação
-// mas mantém a funcionalidade esperada no React Native (Expo Go).
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-/**
- * Tela de Introdução do Curso.
- * @param {{ navigation: { navigate: (screen: string) => void } }} props - Objeto de navegação.
- */
-const StartScreen = ({ navigation }) => {
-    return (
-        <View style={styles.screenContainer}>
-            <Text style={styles.titleMain}>React Play</Text>
-            <Text style={styles.subtitleMain}>Aprenda os Fundamentos do React Native</Text>
-            <TouchableOpacity
-                onPress={() => navigation.navigate("Level1")}
-                style={styles.buttonPrimary}
-            >
-                <Text style={styles.buttonText}>Iniciar Curso</Text>
-            </TouchableOpacity>
+export default function StartScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      {/* Card central */}
+      <View style={styles.card}>
+        <Text style={styles.emoji}>🚀</Text>
+
+        <Text style={styles.title}>React Play</Text>
+
+        <Text style={styles.subtitle}>
+          Aprenda React Native de forma prática,
+          interativa e divertida.
+        </Text>
+
+        {/* Lista visual */}
+        <View style={styles.list}>
+          <Text style={styles.listItem}>✅ Componentes</Text>
+          <Text style={styles.listItem}>✅ JSX</Text>
+          <Text style={styles.listItem}>✅ Estado & Hooks</Text>
+          <Text style={styles.listItem}>✅ Estilos & Navegação</Text>
         </View>
-    );
-};
 
-// No React Native, definimos estilos usando um objeto JavaScript com StyleSheet.
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Level1")}
+        >
+          <Text style={styles.buttonText}>🎯 Iniciar Curso</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
 const styles = StyleSheet.create({
-    screenContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 32,
-        width: '100%',
-        backgroundColor: '#f9fafb', // Cor de fundo leve (simulando bg-white-smoke)
-    },
-    titleMain: {
-        fontSize: 36,
-        fontWeight: '800',
-        marginBottom: 32,
-        color: '#2563eb', // blue-600
-    },
-    subtitleMain: {
-        fontSize: 18,
-        color: '#4b5563', // gray-600
-        marginBottom: 40,
-        textAlign: 'center',
-    },
-    buttonPrimary: {
-        paddingHorizontal: 32,
-        paddingVertical: 12,
-        borderRadius: 9999, // Arredondado completo
-        backgroundColor: '#2563eb', // blue-600
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.2,
-        shadowRadius: 6,
-        elevation: 3, // Sombra para Android
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: '600',
-        textAlign: 'center',
-    }
-});
+  container: {
+    flex: 1,
+    backgroundColor: "#eef2ff", // fundo azul bem suave
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
 
-export default StartScreen;
+  card: {
+    width: "100%",
+    maxWidth: 380,
+    backgroundColor: "#ffffff",
+    borderRadius: 20,
+    padding: 28,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+
+  emoji: {
+    fontSize: 48,
+    marginBottom: 12,
+  },
+
+  title: {
+    fontSize: 32,
+    fontWeight: "800",
+    color: "#2563eb",
+    marginBottom: 8,
+  },
+
+  subtitle: {
+    fontSize: 16,
+    color: "#374151",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+
+  list: {
+    alignSelf: "stretch",
+    marginBottom: 24,
+  },
+
+  listItem: {
+    fontSize: 14,
+    color: "#111827",
+    marginBottom: 6,
+  },
+
+  button: {
+    backgroundColor: "#2563eb",
+    paddingVertical: 14,
+    paddingHorizontal: 32,
+    borderRadius: 999,
+  },
+
+  buttonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "700",
+  },
+});

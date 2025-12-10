@@ -4,7 +4,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Platform
+  Platform,
 } from "react-native";
 import { useState } from "react";
 
@@ -13,18 +13,20 @@ export default function Level2({ navigation }) {
 
   return (
     <View style={styles.container}>
-
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text style={styles.backButton}>⬅ Voltar</Text>
+      </TouchableOpacity>
       {/* Título */}
       <Text style={styles.title}>2 — JSX</Text>
 
-      {/* Descrição */}
+      {/* Explicação principal */}
       <Text style={styles.description}>
-        JSX é uma extensão de sintaxe que permite combinar a marcação de interface 
-        (como HTML) com o código JavaScript. Tudo o que estiver dentro de chaves 
-        {' { } '} é código JS puro sendo executado.
+        JSX é uma forma de escrever a interface usando JavaScript.
+        Tudo o que está entre {"{ }"} é código JS sendo executado.
+        Sempre que um valor muda, o React atualiza a interface.
       </Text>
 
-      {/* Exemplo Interativo */}
+      {/* Exemplo interativo */}
       <Text style={styles.sectionLabel}>Exemplo Interativo:</Text>
 
       <TextInput
@@ -38,24 +40,42 @@ export default function Level2({ navigation }) {
         Olá {name.trim() === "" ? "Visitante" : name}
       </Text>
 
-      {/* Código */}
+      {/* Código REAL usado */}
+      <Text style={styles.codeTitle}>Código usado neste exemplo:</Text>
+
       <View style={styles.codeBox}>
         <Text style={styles.code}>
-{`// HTML misturado com JavaScript:
-const name = "Mundo";
+{`import { Text, TextInput } from "react-native";
+import { useState } from "react";
 
-<p>Olá {name}</p>
-// Saída: Olá Mundo`}
+function MyComponent() {
+  const [name, setName] = useState("");
+
+  return (
+    <>
+      <TextInput
+        value={name}
+        onChangeText={setName}
+      />
+
+      <Text>
+        Olá {name.trim() === "" ? "Visitante" : name}
+      </Text>
+    </>
+  );
+}`}
         </Text>
       </View>
 
-      {/* Explicação */}
+      {/* Explicação detalhada */}
       <Text style={styles.footerText}>
-        O valor digitado no campo é guardado no estado {'`name`'} e exibido
-        imediatamente no JSX.
+        O valor digitado é guardado no estado "name".
+        O JSX usa esse valor diretamente dentro do texto.
+        A expressão dentro de {"{ }"} decide o que será exibido
+        com base no valor do estado.
       </Text>
 
-      {/* Botão */}
+      {/* Próximo nível */}
       <TouchableOpacity
         style={styles.nextButton}
         onPress={() => navigation.navigate("Level3")}
@@ -64,7 +84,6 @@ const name = "Mundo";
           Concluir Nível 2 e Ir para o 3
         </Text>
       </TouchableOpacity>
-
     </View>
   );
 }
@@ -103,6 +122,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "#111",
   },
+  codeTitle: {
+    fontWeight: "600",
+    marginBottom: 8,
+  },
   codeBox: {
     backgroundColor: "#111827",
     borderRadius: 8,
@@ -123,6 +146,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#2563eb",
     padding: 14,
     borderRadius: 8,
+  },
+   backButton: {
+    color: "#2563eb",
+    marginBottom: 12,
+    fontSize: 14,
   },
   nextButtonText: {
     textAlign: "center",
