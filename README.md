@@ -1,5 +1,8 @@
 
 # 📱 React Native Learning App
+📹 Vídeo de Apresentação
+
+Assista à apresentação do app em vídeo, mostrando todas as telas e funcionalidades interativas:
 
 ## Descrição do Projeto
 
