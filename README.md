@@ -3,6 +3,7 @@
 📹 Vídeo de Apresentação
 
 Assista à apresentação do app em vídeo, mostrando todas as telas e funcionalidades interativas:
+https://drive.google.com/file/d/1tlpPCXnuBmFrm545f6Zqbs_5X_En1-9j/view?usp=sharing
 
 ## Descrição do Projeto
 
